@@ -1,3 +1,5 @@
+# MetaDefender Deployed on Cloud Service Providers
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -7,10 +9,6 @@
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -18,59 +16,39 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-OPSWAT MetaDefender products are adapting year over year for our customers to get advantage of the new technologies that are coming. With this project you will be able to deploy some of our MetaDefender products to a Kubernetes Cluster. We provide you with some architecture recommendations for the main cloud providers to host the Kubernetes cluster together with an script to provision such recommended architecture. Also we provide you with all the information of the components that will be installed inside the cluster to run our products and a script to install it depending on the different configuration options.
+OPSWAT products are adapting year over year for our customers to get advantage of the different ways to deploy the MetaDefender products. This project covers different deployment options and automations for the OPSWAT products that are supported to be deployed in different Cloud Service Providers (CSPs). We provide you with some architecture recommendations for the main cloud providers to host MetaDefender products being deployed as single instance or with multiple instances and load balancing the request. All these automations are using the images published in the different CSP marketplaces. 
 
+Main Metadefender Core documentation pages:
 
-Main Metadefender documentation pages:
+* [AWS CSP Recommended Architectures](https://docs.opswat.com/mdcore/cloud-deployment/recommended-architectures-in-aws)
 
-* AWS Cloud Deployment Architectures Recommended [Doc](https://docs.opswat.com/mdcore/cloud-deployment/recommended-architectures-in-aws)
-* MetaDefender Core Provisioned in AWS EKS [Doc](https://docs.opswat.com/mdcore/cloud-deployment/eks-cluster-architecture)
-* MetaDefender Core Kubernetes Components [Doc](https://docs.opswat.com/mdcore/kubernetes-configuration/kubernetes-components)
-* MetaDefender Core In Your Already Created Kubernetes Cluster [Doc](https://docs.opswat.com/mdcore/kubernetes-configuration/metadefender-core-in-your-already-created-k8s)
-* MetaDefender for Secure Storage Kubernetes deployment [Doc](https://docs.opswat.com/mdss/installation/kubernetes-deployment)
+On MetaDefender Core docs you can find examples on how to integrate MetaDefender Core with MetaDefender ICAP Server or Storage Security but each product also has its own documentation pages with recommendation for each CSP
+
+* [AWS CSP Recommended Architectures for ICAP](https://docs.opswat.com/mdcore/cloud-deployment/recommended-architectures-in-aws)
+* [AWS CSP Recommended Architectures for Storage Security](https://docs.opswat.com/mdss/deployment-guide)
+
+In case of being interested in deploying any of OPSWAT products to a Kubernetes cluster please check [metadefender-k8s](https://github.com/OPSWAT/metadefender-k8s) repository
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Current CSPs automation developed
 
+The main goal of this project is to develop the code to automate the creation of the different resources needed in the different CSPs to get to the best usage of the OPSWAT applications. Current supported automations will improve release by release, together with new ones that are on RoadMap 
+
+- AWS
+- Azure ( On RoadMap)
+- GCP ( On RoadMap)
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+There is a folder for each the CSP to deploy the applications. Inside each CSP folder there is either an automation to deploy a single instance or the service to have multiple instances. 
 
-### Prerequisites
-
-* In case of provisioning with the MetaDefender scipt the resources recommended from OPSWAT 
-    * Knowledge of choosen CSP: OPSWAT assume familiarity with AWS or Azure in case you provision the infrastructure with the MetaDefender Script  
-    * Account of the choosen CSP to create all the resources needed 
-* Scripting languages supported: Linux - shell
-* Pre-requisites:
-    * [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-    * [Helm](https://helm.sh/docs/intro/install/)
-    * [AWS-CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-    * [Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-
-
-### Installation
-
- OPSWAT has prepared a recommended architecture for having Metadefender products deployed in a Kubernetes Cluster in the main CSP. 
- Depending on the architecture prefered the installation process is different as each product has its own configuration options. To facilitate the deployment of the product we have created what we call MetaDefender K8S script that will guide you through the different options and configure the enviroment for you. 
-
- There are two modes for using the script provision and install. 
-
- For provision in AWS follow this [doc](https://docs.opswat.com/mdcore/cloud-deployment/metadefender-core-provisioned-in-aws-eks)
- For install MD Core in an already created cluster follow this [doc](https://docs.opswat.com/mdcore/kubernetes-configuration/metadefender-core-in-your-already-created-k8s)
-
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
+- Go to each CSP folder and see README file 
+- Contact sales to get your license key to activate the different applications
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -112,6 +90,7 @@ For other [questions](https://www.opswat.com/contact)
 * Contact US: https://www.opswat.com/contact
 
 MetaDefender Core Documentation: [https://docs.opswat.com/mdcore](https://docs.opswat.com/mdcore)
+MetaDefender ICAP Server Documentation: [https://docs.opswat.com/mdicap](https://docs.opswat.com/mdicap)
 MetaDefender for Secure Storage Documentation: [https://docs.opswat.com/mdss](https://docs.opswat.com/mdss)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
