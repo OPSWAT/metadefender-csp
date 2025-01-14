@@ -27,11 +27,3 @@
     type = bool
     default = false
   }  
-  variable "PUBLIC" {
-    type = bool
-    default = true
-  }
-  variable "AUTOSCALING" {
-    type = bool
-    default = false
-  }

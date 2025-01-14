@@ -6,9 +6,9 @@ MD_REGION                   = "eu-central-1"
 #SECRET_ACCESS_KEY          = "<SECRET_ACCESS_KEY>"
 MD_VPC_CIDR                 = "192.168.0.0/16"
 PUBLIC_ENVIRONMENT          = true
-WARM_POOL_ENABLED           = true
+WARM_POOL_ENABLED           = false
 APIKEY_GENERATION           = true
-LICENSE_AUTOMATION_LAMBDA   = true
+LICENSE_AUTOMATION_LAMBDA   = false
 
 # MetaDefender Core variables
 
@@ -22,7 +22,7 @@ CORE_PORT               = 8008
 
 # MetaDefender ICAP variables
 
-DEPLOY_ICAP             = true
+DEPLOY_ICAP             = false
 ICAP_PRODUCT_ID         = "b1w10ei2pw2vgpdsjw44pbffr" # For Windows it is 
 ICAP_PORT               = 8048
 ICAP_INSTANCE_TYPE      = "c5.2xlarge"

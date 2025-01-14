@@ -13,7 +13,7 @@ module "metadefender_network" {
 }
 
 resource "random_bytes" "apikey" {
-  count            = var.LICENSE_KEY_CORE != "" && var.APIKEY_GENERATION  ? 1 : 0
+  count            = (var.LICENSE_KEY_CORE != "" || var.LICENSE_KEY_ICAP != "") && var.APIKEY_GENERATION  ? 1 : 0
   length = 18
 }
 

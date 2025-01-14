@@ -3,7 +3,6 @@ module "metadefender_network" {
 
   VPC_CIDR          = var.MD_VPC_CIDR
   ENV_NAME          = var.MD_ENV_NAME
-  AUTOSCALING       = true
   DEPLOY_ICAP       = var.DEPLOY_ICAP
   DEPLOY_MDSS       = var.DEPLOY_MDSS
   DEPLOY_MDSS_AMAZONMQ    = var.DEPLOY_MDSS_AMAZONMQ
@@ -13,7 +12,7 @@ module "metadefender_network" {
 }
 
 resource "random_bytes" "apikey" {
-  count            = var.LICENSE_KEY_CORE != "" && var.APIKEY_GENERATION  ? 1 : 0
+  count            = (var.LICENSE_KEY_CORE != "" || var.LICENSE_KEY_ICAP != "") && var.APIKEY_GENERATION  ? 1 : 0
   length = 18
 }
 
