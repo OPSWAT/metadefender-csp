@@ -39,7 +39,7 @@ In case of being interested in deploying any of OPSWAT products to a Kubernetes 
 The main goal of this project is to develop the code to automate the creation of the different resources needed in the different CSPs to get to the best usage of the OPSWAT applications. Current supported automations will improve release by release, together with new ones that are on RoadMap 
 
 - AWS
-- Azure ( On RoadMap)
+- Azure
 - GCP ( On RoadMap)
 
 <!-- GETTING STARTED -->
