@@ -60,8 +60,8 @@ terraform apply
 ### 🔐 Licensing
 - Requires proper MetaDefender licenses.
 - For VMSS setups, license activation can be integrated
-      - (Only POC) Using API keys and startup scripts in the VM image of the Marketplace
-      - (Production) Using Azure function trigger based on VM event. See code under `function_project/event_licensing_handler`
+    - (Only POC) Using API keys and startup scripts in the VM image of the Marketplace
+    - (Production) Using Azure function trigger based on VM event. See code under `function_project/event_licensing_handler
 
 ### 🤝 Contributing
 Contributions are welcome:
