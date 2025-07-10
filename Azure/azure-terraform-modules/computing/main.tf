@@ -68,6 +68,7 @@ resource "azurerm_lb_rule" "lbnatrule" {
   loadbalancer_id                = azurerm_lb.vmss[0].id
   name                           = "http"
   protocol                       = "Tcp"
+  load_distribution              = "SourceIP"
   frontend_port                  = var.APP_PORT
   backend_port                   = var.APP_PORT
   backend_address_pool_ids       = [azurerm_lb_backend_address_pool.bpepool[0].id]
@@ -83,7 +84,7 @@ resource "azurerm_orchestrated_virtual_machine_scale_set" "Vmss" {
   platform_fault_domain_count = 1
   sku_name                    = var.INSTANCE_TYPE
   instances                   = var.NUMBER_INSTANCES
-  user_data_base64            = var.DEPLOY_CORE || var.DEPLOY_ICAP ? base64encode(data.template_file.core_icap_user_data[0].rendered) : var.DEPLOY_MDSS && var.DEPLOY_MDSS_COSMOSDB ? base64encode(data.template_file.mdss_user_data_script[0].rendered) : null
+  user_data_base64            = var.DEPLOY_CORE || var.DEPLOY_ICAP && !var.LICENSE_AUTOMATION_FUNCTION ? base64encode(data.template_file.core_icap_user_data[0].rendered) : var.DEPLOY_MDSS && var.DEPLOY_MDSS_COSMOSDB ? base64encode(data.template_file.mdss_user_data_script[0].rendered) : null
 
   os_profile {
     dynamic linux_configuration {

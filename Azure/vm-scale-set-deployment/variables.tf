@@ -33,7 +33,10 @@
     default = false
   }
 
-
+  variable "LICENSE_AUTOMATION_FUNCTION" {
+    type = bool
+    default = false
+  }
   variable "DEPLOY_CORE" {
     type = bool
     default = true
@@ -50,6 +53,19 @@
   }
 
   variable "LICENSE_KEY_CORE" {
+    type = string
+    default = ""
+  }
+
+  variable "APIKEY" {
+    type = string
+    default = ""
+  }
+  variable "CORE_USER" {
+    type = string
+    default = ""
+  }
+  variable "CORE_PWD" {
     type = string
     default = ""
   }

@@ -30,3 +30,7 @@
     type = bool
     default = false
   }
+  variable "LICENSE_AUTOMATION_FUNCTION" {
+    type = bool
+    default = false
+  }

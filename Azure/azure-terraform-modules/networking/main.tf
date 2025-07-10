@@ -19,6 +19,33 @@ resource "azurerm_subnet" "subnet_priv" {
   address_prefixes     = [cidrsubnet(var.MD_VNET_CIDR, 4, 2)]
 }
 
+#resource "azurerm_resource_provider_registration" "ms_app" {
+#  name = "Microsoft.App"
+#}
+
+resource "azurerm_subnet" "function_subnet" {
+  count                = var.LICENSE_AUTOMATION_FUNCTION ? 1 : 0
+  name                 = "${var.RG_NAME}-function-subnet"
+  resource_group_name  = var.RG_NAME
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = [cidrsubnet(var.MD_VNET_CIDR, 4, 3)]
+  default_outbound_access_enabled = false
+  service_endpoints    = [
+    "Microsoft.KeyVault",
+    "Microsoft.Storage",
+  ]
+  delegation {
+    name = "delegation"
+    service_delegation {
+        actions = [
+          "Microsoft.Network/virtualNetworks/subnets/join/action",
+        ]
+        name    = "Microsoft.App/environments"
+    }
+  }
+}
+
+
 resource "azurerm_network_security_group" "allow_core_icap_mdss" {
   name                = "allow_core_icap_mdss"
   location            = var.MD_REGION
@@ -134,6 +161,11 @@ resource "azurerm_subnet_network_security_group_association" "subnet-priv-nsg-as
   subnet_id                 = azurerm_subnet.subnet_priv.id
   network_security_group_id = azurerm_network_security_group.allow_core_icap_mdss.id
 }
+resource "azurerm_subnet_network_security_group_association" "subnet-func-nsg-association" {
+  count                = var.LICENSE_AUTOMATION_FUNCTION ? 1 : 0
+  subnet_id                 = azurerm_subnet.function_subnet[0].id
+  network_security_group_id = azurerm_network_security_group.allow_core_icap_mdss.id
+}
 
 resource "azurerm_public_ip" "NATpublicIp" {
   name                = "${var.RG_NAME}-natpublic-ip"
@@ -149,12 +181,18 @@ resource "azurerm_nat_gateway" "natgw" {
   sku_name            = "Standard"
 }
 
-resource "azurerm_nat_gateway_public_ip_association" "example" {
+resource "azurerm_nat_gateway_public_ip_association" "natgwpubipass" {
   nat_gateway_id       = azurerm_nat_gateway.natgw.id
   public_ip_address_id = azurerm_public_ip.NATpublicIp.id
 }
 
-resource "azurerm_subnet_nat_gateway_association" "example" {
+resource "azurerm_subnet_nat_gateway_association" "natgwtosubnet" {
   subnet_id     = azurerm_subnet.subnet_priv.id
+  nat_gateway_id = azurerm_nat_gateway.natgw.id
+}
+
+resource "azurerm_subnet_nat_gateway_association" "natgwtosubnetFunc" {
+  count                = var.LICENSE_AUTOMATION_FUNCTION ? 1 : 0
+  subnet_id                 = azurerm_subnet.function_subnet[0].id
   nat_gateway_id = azurerm_nat_gateway.natgw.id
 }

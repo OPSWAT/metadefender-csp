@@ -10,6 +10,11 @@
     type    = string
     default = ""
   }
+
+  variable "LICENSE_AUTOMATION_FUNCTION" {
+    type = bool
+    default = false
+  }
   variable "RG_NAME" {
     type    = string
     default = "metadefender"
